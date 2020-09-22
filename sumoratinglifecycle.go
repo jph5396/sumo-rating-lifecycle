@@ -156,6 +156,8 @@ func (s *Sumocycle) Begin() error {
 
 		east.Rating = eastNewScore
 		west.Rating = westNewScore
+		s.RikishiData[east.Rikishi.Id] = east
+		s.RikishiData[west.Rikishi.Id] = west
 
 		s.resultlist = append(s.resultlist, newBoutResult)
 	}
