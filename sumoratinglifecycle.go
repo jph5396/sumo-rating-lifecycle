@@ -20,9 +20,9 @@ type (
 		BashoID int
 		Day     int
 		BoutNum int
-		east    RikishiBoutResult
-		west    RikishiBoutResult
-		winner  string
+		East    RikishiBoutResult
+		West    RikishiBoutResult
+		Winner  string
 	}
 
 	//RikishiBoutResult represents one rikishi's peformance in a bout.
@@ -41,7 +41,7 @@ type (
 		Day         int
 		RikishiData map[int]RikishiData
 		BoutList    []sumomodel.Bout
-		resultlist  []BoutResult
+		Resultlist  []BoutResult
 
 		preday    func(*Sumocycle)
 		prebout   func(*sumomodel.Bout, int)
@@ -145,8 +145,8 @@ func (s *Sumocycle) Begin() error {
 			BashoID: bout.BashoID,
 			Day:     bout.Day,
 			BoutNum: bout.Boutnum,
-			east:    eastBoutResult,
-			west:    westBoutResult,
+			East:    eastBoutResult,
+			West:    westBoutResult,
 		}
 
 		//Execute the postbout function if one exists.
@@ -159,7 +159,7 @@ func (s *Sumocycle) Begin() error {
 		s.RikishiData[east.Rikishi.Id] = east
 		s.RikishiData[west.Rikishi.Id] = west
 
-		s.resultlist = append(s.resultlist, newBoutResult)
+		s.Resultlist = append(s.Resultlist, newBoutResult)
 	}
 
 	if s.postday != nil {
