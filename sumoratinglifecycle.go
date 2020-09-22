@@ -12,7 +12,7 @@ type (
 	// and their rating.
 	RikishiData struct {
 		Rikishi sumomodel.Rikishi
-		Rating  float32
+		Rating  float64
 	}
 
 	// BoutResult contains data representing the result of a bout.
@@ -30,8 +30,8 @@ type (
 	RikishiBoutResult struct {
 		RikishiID int
 		Name      string
-		Score     float32
-		Change    float32
+		Score     float64
+		Change    float64
 	}
 
 	//Sumocycle contains data and lifecycle hooks to calculate sumo
@@ -45,7 +45,7 @@ type (
 
 		preday    func(*Sumocycle)
 		prebout   func(*sumomodel.Bout, int)
-		calculate func(float32, float32, bool) float32
+		calculate func(float64, float64, bool) float64
 		postbout  func(BoutResult)
 		postday   func(Sumocycle)
 	}
@@ -92,7 +92,7 @@ func (s *Sumocycle) AfterDay(f func(Sumocycle)) {
 // the provided function accepts two floats and a bool.
 // the first float represents the current rikishi and the second represents
 // their opponent.
-func (s *Sumocycle) Calculation(f func(float32, float32, bool) float32) {
+func (s *Sumocycle) Calculation(f func(float64, float64, bool) float64) {
 	s.calculate = f
 }
 
