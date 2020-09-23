@@ -22,7 +22,6 @@ type (
 		BoutNum int
 		East    RikishiBoutResult
 		West    RikishiBoutResult
-		Winner  string
 	}
 
 	//RikishiBoutResult represents one rikishi's peformance in a bout.
