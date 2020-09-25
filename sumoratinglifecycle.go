@@ -17,7 +17,7 @@ type (
 
 	// BoutResult contains data representing the result of a bout.
 	BoutResult struct {
-		BashoID int `firestore:"bashoid,omitempty`
+		BashoID int `firestore:"bashoid,omitempty"`
 		Day     int `firestore:"day,omitempty"`
 		BoutNum int `firestore:"boutnum,omitempty"`
 		East    RikishiBoutResult
