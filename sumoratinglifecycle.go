@@ -17,9 +17,9 @@ type (
 
 	// BoutResult contains data representing the result of a bout.
 	BoutResult struct {
-		BashoID int
-		Day     int
-		BoutNum int
+		BashoID int `firestore:"bashoid,omitempty`
+		Day     int `firestore:"day,omitempty"`
+		BoutNum int `firestore:"boutnum,omitempty"`
 		East    RikishiBoutResult
 		West    RikishiBoutResult
 	}
@@ -27,10 +27,12 @@ type (
 	//RikishiBoutResult represents one rikishi's peformance in a bout.
 	// including the id, name, score, and change since the last bout.
 	RikishiBoutResult struct {
-		RikishiID int
-		Name      string
-		Score     float64
-		Change    float64
+		RikishiID int     `firestore:"id,omitempty"`
+		Name      string  `firestore:"name,omitempty"`
+		Rank      string  `firestore:"rank,omitempty"`
+		ScorePre  float64 `firestore:"scorepre,omitempty"`
+		ScorePost float64 `firestore:"scorepost,omitempty"`
+		Change    float64 `firestore:"change,omitempty"`
 	}
 
 	//Sumocycle contains data and lifecycle hooks to calculate sumo
@@ -129,14 +131,18 @@ func (s *Sumocycle) Begin() error {
 		eastBoutResult := RikishiBoutResult{
 			RikishiID: east.Rikishi.Id,
 			Name:      east.Rikishi.Name,
-			Score:     eastNewScore,
+			Rank:      east.Rikishi.Rank,
+			ScorePre:  east.Rating,
+			ScorePost: eastNewScore,
 			Change:    eastNewScore - east.Rating,
 		}
 
 		westBoutResult := RikishiBoutResult{
 			RikishiID: west.Rikishi.Id,
 			Name:      west.Rikishi.Name,
-			Score:     westNewScore,
+			Rank:      west.Rikishi.Rank,
+			ScorePre:  west.Rating,
+			ScorePost: westNewScore,
 			Change:    westNewScore - west.Rating,
 		}
 
